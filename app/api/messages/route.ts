@@ -1,8 +1,7 @@
-import { NextResponse } from "next/server";
-import { Message } from "@prisma/client";
-
 import { currentProfile } from "@/lib/current-profile";
+import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import { Message } from "@prisma/client";
 
 const MESSAGES_BATCH = 10;
 
@@ -19,7 +18,7 @@ export async function GET(req: Request) {
     }
 
     if (!channelId) {
-      return new NextResponse("Channel ID missing", { status: 400 });
+      return new NextResponse("Channel ID Missing", { status: 400 });
     }
 
     let messages: Message[] = [];
@@ -75,7 +74,7 @@ export async function GET(req: Request) {
       nextCursor,
     });
   } catch (error) {
-    console.log("[MESSAGES_GET]", error);
+    console.log("[MESSAGE_GET]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

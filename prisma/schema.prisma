@@ -87,7 +87,7 @@ model Channel {
   serverId String
   server Server @relation(fields: [serverId], references: [id], onDelete: Cascade)
 
-  Messages Message[]
+  messages Message[]
   
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
@@ -150,6 +150,6 @@ model DirectMessage {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([conversationId])
   @@index([memberId])
+  @@index([conversationId])
 }
